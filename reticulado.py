@@ -138,7 +138,7 @@ class Reticulado(object):
 		self.has_solution = True
 
 	def obtener_desplazamiento_nodal(self, n):
-              if self.Ndimensiones == 2:
+                if self.Ndimensiones == 2:
                         dofs = [2*n, 2*n+1]
                 elif self.Ndimensiones == 3:
                         dofs = [3*n, 3*n+1, 3*n+2]
