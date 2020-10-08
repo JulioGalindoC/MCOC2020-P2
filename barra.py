@@ -45,7 +45,10 @@ class Barra(object):
 	def obtener_rigidez(self, ret):
 		A = self.calcular_area()
 		L = self.calcular_largo(ret)
-
+		
+		xi = ret.obtener_coordenada_nodal(self.ni)
+		xj = ret.obtener_coordenada_nodal(self.nj)
+		
 		cosθx = (xj[0] - xi[0])/L
 		cosθy = (xj[1] - xi[1])/L
 		cosθz = (xj[2] - xi[2])/L
