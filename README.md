@@ -15,4 +15,4 @@ El resultado de la ecuacion anterior para r es :
 
     {{r -> ConditionalExpression[t/2 + Sqrt[l^2 - 11250 t^2]/(150 Sqrt[2]), t > 0 && l > 150 t]}}
 
-Por ultimo se reviso que la tension de cada barra no sea mayor a la tension admisible del acero.
+Por último se revisó que la tensión de cada barra no sea mayor a la tensión admisible del acero.
