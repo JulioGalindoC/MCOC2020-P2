@@ -108,25 +108,34 @@ class Barra(object):
 		se cumplan las disposiciones de diseño lo más cerca posible
 		a FU = 1.0.
 		"""
-		
-		self.t = 0.001
+
 		L = self.calcular_largo(ret)
-		
+
 		if Fu >= 0 :
 			# Diseño en traccion:
-			A = Fu / (0.9 *self.σy)
-			self.R = (A + np.pi * self.t**2) / (2 * np.pi * self.t)
+			A = Fu / (ϕ *self.σy)
+			self.R = np.sqrt(A/np.pi)
+			self.t = self.R
+
 		else :
 			#Diseño a compresion
-			R = self.t / 2 + np.sqrt(L**2 - 11250 * self.t**2)/(150*np.sqrt(2))
-			A = np.pi *(R**2 -(R-self.t)**2)
+			aux1 = np.sqrt(L**2/11250)
+			if aux1 > 0.001 :
+				self.t = 0.001
+			else :
+				self.t = aux1
+
+			self.R = self.t / 2 + np.sqrt(L**2 - 11250 * self.t**2)/(150*np.sqrt(2))
+
+			if self.R < self.t :
+				self.R = self.t
+
+			A = np.pi *(self.R**2 -(self.R-self.t)**2)
 			
-			self.R = R
 			
 			if abs(Fu)/(ϕ*A) > self.σy :
 				A = Fu / (self.σy * ϕ)
 				self.R = (A + np.pi * self.t**2) / (2 * np.pi * self.t)
-
+		
 		return self.R, self.t
-
 
