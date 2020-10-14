@@ -102,7 +102,7 @@ class Barra(object):
 
 		return abs(Fu)/ϕ/Fn
 
-	def rediseñar(self, Fu, ϕ=0.9):
+	def rediseñar(self, ret, Fu, ϕ=0.9):
 		"""Para la fuerza Fu (proveniente de una combinacion de cargas)
 		re-calcular el radio y el espesor de la barra de modo que
 		se cumplan las disposiciones de diseño lo más cerca posible
