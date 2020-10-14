@@ -124,6 +124,6 @@ plt.title("FU caso 2: 1.2 D + 1.6 L")
 plt.show()
 
 
-Fu = #definir
+Fu = 0.9
 
 ret_D.rediseñar(Fu)
