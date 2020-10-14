@@ -116,16 +116,10 @@ class Barra(object):
 			self.R = (A + np.pi * self.t**2) / (2 * np.pi * self.t)
 		else :
 			#Diseño a compresion
-			A1 = 300**2 * abs(Fu) / (np.pi**2 * self.E)
 			R = self.t / 2 + np.sqrt(L**2 - 11250 * self.t**2)/(150*np.sqrt(2))
-			A2 = np.pi *(R**2 -(R-self.t)**2)
-			if A2 > A1 :
-				self.R = R
-				A = A2
-			else :
-				self.R = (A1 + np.pi * self.t**2) / (2 * np.pi * self.t)
-				A = A1		
-		
+			A = np.pi *(R**2 -(R-self.t)**2)
+			
+			self.R = R		
 		
 		return self.R, self.t
 
