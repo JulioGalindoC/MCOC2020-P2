@@ -51,26 +51,37 @@ def caso_L():
 
     ret.agregar_barra(Barra(0, 1, *props))   # 0
     ret.agregar_barra(Barra(1, 2, *props))   # 1
-    ret.agregar_barra(Barra(3, 4, *props))   # 2
+    ret.agregar_barra(Barra(2, 3, *props))   # 2
     ret.agregar_barra(Barra(0, 3, *props2))   # 3
-    ret.agregar_barra(Barra(3, 1, *props2))   # 4
-    ret.agregar_barra(Barra(1, 4, *props2))   # 5
-    ret.agregar_barra(Barra(4, 2, *props))   # 6
-    ret.agregar_barra(Barra(5, 6, *props))   # 7
-    ret.agregar_barra(Barra(6, 7, *props))   # 8
-    ret.agregar_barra(Barra(5, 3, *props2))   # 9
-    ret.agregar_barra(Barra(3, 6, *props2))   # 10
-    ret.agregar_barra(Barra(6, 4, *props2))   # 11
-    ret.agregar_barra(Barra(4, 7, *props))   # 12
-    ret.agregar_barra(Barra(0, 5, *props))   # 13
-    ret.agregar_barra(Barra(1, 6, *props))   # 14
-    ret.agregar_barra(Barra(2, 7, *props))   # 15
-    ret.agregar_barra(Barra(0, 6, *props))   # 16
-    ret.agregar_barra(Barra(6, 2, *props))   # 17
-    ret.agregar_barra(Barra(5, 1, *props))   # 18
-    ret.agregar_barra(Barra(1, 7, *props))   # 19
-
-
+    ret.agregar_barra(Barra(4, 5, *props2))   # 4
+    ret.agregar_barra(Barra(5, 6, *props2))   # 5
+    ret.agregar_barra(Barra(7, 8, *props))   # 6
+    ret.agregar_barra(Barra(8, 9, *props))   # 7
+    ret.agregar_barra(Barra(9, 10, *props))   # 8
+    ret.agregar_barra(Barra(0, 7, *props2))   # 9
+    ret.agregar_barra(Barra(7, 8, *props2))   # 10
+    ret.agregar_barra(Barra(1, 8, *props2))   # 11
+    ret.agregar_barra(Barra(0, 8, *props))   # 12
+    ret.agregar_barra(Barra(1, 7, *props))   # 13
+    ret.agregar_barra(Barra(1, 9, *props))   # 14
+    ret.agregar_barra(Barra(2, 8, *props))   # 15
+    ret.agregar_barra(Barra(2, 9, *props))   # 16
+    ret.agregar_barra(Barra(2, 10, *props))   # 17
+    ret.agregar_barra(Barra(3, 9, *props))   # 18
+    ret.agregar_barra(Barra(3, 10, *props))   # 19
+    ret.agregar_barra(Barra(0, 4, *props))   # 20
+    ret.agregar_barra(Barra(1, 4, *props))   # 21
+    ret.agregar_barra(Barra(4, 7, *props))   # 19
+    ret.agregar_barra(Barra(4, 8, *props))   # 22
+    ret.agregar_barra(Barra(5, 8, *props))   # 23
+    ret.agregar_barra(Barra(1, 5, *props))   # 24
+    ret.agregar_barra(Barra(2, 5, *props))   # 25
+    ret.agregar_barra(Barra(5, 9, *props))   # 26
+    ret.agregar_barra(Barra(6, 9, *props))   # 27
+    ret.agregar_barra(Barra(2, 9, *props))   # 28
+    ret.agregar_barra(Barra(6, 10, *props))   # 29
+    ret.agregar_barra(Barra(3, 6, *props))   # 30
+    
     # ver_reticulado_3d(ret)
 
 
@@ -85,30 +96,38 @@ def caso_L():
     ret.agregar_restriccion(5, 0, 0)
 
 
-    # 0-----]-----1-----]-----2
-    # |     ]     |     ]     |
-    # |-----]-----|-----]-----|
-    # |     ]     |     ]     |
-    # 5-----]-----6-----]-----7
+    # 0-----]-----1-----]-----2-----]-----3
+    # |     ]     |     ]     |     ]     |
+    # |-----]-----|-----]-----|-----]-----|
+    # |     ]     |     ]     |     ]     |
+    # 7-----]-----8-----]-----9-----]-----10
 
-    # A0265 sera el area entre 0,2,6,5
-    # A1276 sera el area entre 0,2,7,6
+    # A0265 sera el area entre 0,1,8,7
+    # A1276 sera el area entre 1,2,9,8
+    # A23109 sera el area entre 2,3,10,9
 
     q = 400  # kg/m2
     barras = ret.obtener_barras()
 
     L_01 = barras[0].calcular_largo(ret)
-    L_05 = barras[13].calcular_largo(ret)
-    A0265 = L_01 * L_05  # m2
+    L_07 = barras[16].calcular_largo(ret)
+    A0187 = L_01 * L_07  # m2
 
     L_12 = barras[1].calcular_largo(ret)
-    L_27 = barras[15].calcular_largo(ret)
-    A1276 = L_12 * L_27  # m2
+    L_18 = barras[15].calcular_largo(ret)
+    A1298 = L_12 * L_18  # m2
+    
+    L_23 = barras[2].calcular_largo(ret)
+    L_29 = barras[19].calcular_largo(ret)
+    A23109 = L_23 * L_29  # m2
 
-    [ret.agregar_fuerza(i, 2, -A0265 * q / 4) for i in [0, 1, 5, 6]]
-    [ret.agregar_fuerza(i, 2, -A1276 * q / 4) for i in [1, 2, 7, 6]]
+    [ret.agregar_fuerza(i, 2, -A0187 * q / 4) for i in [0, 1, 8, 7]]
+    [ret.agregar_fuerza(i, 2, -A1298 * q / 4) for i in [1, 2, 9, 8]]
+    [ret.agregar_fuerza(i, 2, -A23109 * q / 4) for i in [2, 3, 10, 9]]
 
     return ret
+
+
 
 
 
