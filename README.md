@@ -16,3 +16,7 @@ El resultado de la ecuacion anterior para r es :
     {{r -> ConditionalExpression[t/2 + Sqrt[l^2 - 11250 t^2]/(150 Sqrt[2]), t > 0 && l > 150 t]}}
 
 Por último se revisó que la tensión de cada barra no sea mayor a la tensión admisible del acero.
+
+FACTORES DE UTILIZACIÓN NUEVOS Y PESO:
+
+Se puede ver que para las piezas en tracción se logran FUs iguales a uno. Pero que esto no es posible para el caso a compresión, es más si se quiere tener valores cercanos a uno en compresion habría que incumplir el criterio de Esbeltez <= 300. Al tener valores menores que uno es posibble utilizar aceros de menor resistencia (más economicos y más livianos).
