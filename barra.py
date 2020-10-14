@@ -108,8 +108,10 @@ class Barra(object):
 		se cumplan las disposiciones de diseño lo más cerca posible
 		a FU = 1.0.
 		"""
-
+		
+		self.t = 0.001
 		L = self.calcular_largo(ret)
+		
 		if Fu >= 0 :
 			# Diseño en traccion:
 			A = Fu / (0.9 *self.σy)
@@ -119,8 +121,12 @@ class Barra(object):
 			R = self.t / 2 + np.sqrt(L**2 - 11250 * self.t**2)/(150*np.sqrt(2))
 			A = np.pi *(R**2 -(R-self.t)**2)
 			
-			self.R = R		
-		
+			self.R = R
+			
+			if abs(Fu)/(ϕ*A) > self.σy :
+				A = Fu / (self.σy * ϕ)
+				self.R = (A + np.pi * self.t**2) / (2 * np.pi * self.t)
+
 		return self.R, self.t
 
 
